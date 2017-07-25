@@ -164,6 +164,6 @@ function smoothSlide(){
 var f1 = window.getComputedStyle(document.querySelector('#test1')).fontSize;
 var f2 = window.getComputedStyle(document.querySelector('#test2')).fontSize;
 var f3 = window.getComputedStyle(document.querySelector('#test3')).fontSize;
-alert(f1)
-alert(f2)
-alert(f3)
+//alert(f1)
+//alert(f2)
+//alert(f3)
