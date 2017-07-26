@@ -46,8 +46,8 @@
     a:active{
         -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
     }
-    .post:active{
-        -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    .post:hover{
+        -webkit-tap-highlight-color: rgba(0, 0, 0, 0); 
     }
     #navBtn:active,#navBtn img:active{
         -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
@@ -165,6 +165,9 @@
             .px2rem(line-height,46);
             .px2rem(border-width,1);
             .px2px(font-size,22);
+        }
+        p:active{
+            -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
         }
         #deskToTeam{
             display: none;
@@ -416,6 +419,9 @@
                             }
                         }
                     }
+                }
+                li.post:hover{
+                    border:none;
                 }
             }
             div#benefits{
