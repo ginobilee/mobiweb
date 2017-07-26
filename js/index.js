@@ -1,7 +1,9 @@
 //if show the first screen
-var fSShow = true,currentDtl='',dtlIDs = {}
+var fSShow = true,currentDtl='',dtlIDs = {},navMBshow = false
 var details = document.querySelector('#details'),navUl = document.querySelector('#navUl'),lis = document.querySelectorAll('.navLink')
-
+var products = document.getElementById('products'),team = document.getElementById('team'), recruitment = document.getElementById('recruitment')
+var sections = {products:products,team:team,recruitment:recruitment}
+var screenWidth = window.screen.width;
 var scrollObj = {}
 initiateOffsetTops();
 initPost();
@@ -91,29 +93,60 @@ function initNav(){
 		dtlIDs[lis[i].getAttribute('href').slice(1)] = i
 		dtlIDs[i] = lis[i].getAttribute('href').slice(1)
 	}
-	navUl.addEventListener('click',function(e){
-		e.preventDefault()
-		//if currently show the first screen,show the details immediately
-		if(fSShow){
-			details.classList.remove('slideBottom')
-			details.classList.add('slideTop')
-			details.focus()	
-			fSShow = false
-		}
-		var liId = e.target.getAttribute('href')
-		if(currentDtl === liId.slice(1)){
-			return
-		}
-		lis[dtlIDs[currentDtl]].classList.remove('active')
-		currentDtl = liId.slice(1)
-		e.target.classList.add('active')
-		
-		var curSection = document.querySelector(liId)
-		scrollObj.slides.push({stop:scrollObj.offsetTops[liId.slice(1)]})
-		if(!scrollObj.intervalId){
-		  smoothSlide()
-	    }
-	},false)
+	if(screenWidth > 1000){
+		navUl.addEventListener('click',function(e){
+			e.preventDefault()
+			//if currently show the first screen,show the details immediately
+			if(fSShow){
+				details.classList.remove('slideBottom')
+				details.classList.add('slideTop')
+				details.focus()	
+				fSShow = false
+			}
+			var liId = e.target.getAttribute('href')
+			if(currentDtl === liId.slice(1)){
+				return
+			}
+			lis[dtlIDs[currentDtl]].classList.remove('active')
+			currentDtl = liId.slice(1)
+			e.target.classList.add('active')
+			
+			var curSection = document.querySelector(liId)
+			scrollObj.slides.push({stop:scrollObj.offsetTops[liId.slice(1)]})
+			if(!scrollObj.intervalId){
+			  smoothSlide()
+		    }
+		},false)		
+	}else{
+		document.querySelector('#anchor1').classList.remove('active')
+		let headerWidth = parseInt(window.getComputedStyle(document.querySelector('#docHeader'),null).height)
+		let navLiHeight = parseInt(window.getComputedStyle(document.querySelector('.navLi'),null).height)
+		let navHeight = navLiHeight * 3 + 20;
+		const navBtn = document.querySelector('#navBtn')
+
+		navBtn.addEventListener('click',function(e){
+			if(navMBshow){
+				Velocity(navUl, {height:0},200);
+				navMBshow = false
+			}else{
+				Velocity(navUl, {height:navHeight},0);
+				navMBshow = true
+			}
+		},false)
+
+		navUl.addEventListener('click',function(e){
+			e.preventDefault()
+			let target = e.target
+			details.top = 88;
+			if(target.classList.contains('navLink')){
+				let s = target.getAttribute('href').slice(1)
+				Velocity(sections[s],"scroll",{duration:500,offset:-headerWidth})
+				Velocity(navUl, {height:0},'easeInOut', 200);
+				navMBshow = false
+			}
+		},false)		
+	}
+
 }
 function initiateOffsetTops(){
 	scrollObj.offsetTops = {}
@@ -161,9 +194,3 @@ function smoothSlide(){
 }
 
 //details.scrollTop = scrollObj.offsetTops['recruitment']
-var f1 = window.getComputedStyle(document.querySelector('#test1')).fontSize;
-var f2 = window.getComputedStyle(document.querySelector('#test2')).fontSize;
-var f3 = window.getComputedStyle(document.querySelector('#test3')).fontSize;
-//alert(f1)
-//alert(f2)
-//alert(f3)

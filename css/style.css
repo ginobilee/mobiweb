@@ -108,7 +108,6 @@ section,div{
 nav{
 	display: inline-flex;
 	align-items: center;
-	height: 30px;
 	vertical-align: middle;
 	margin-left: 30px;
 }
@@ -409,13 +408,14 @@ nav li a{
 	margin-top: 60px;
 }
 #recruitment img{
+	margin-top: 50px;
 	width: 690px;
 }
 .mobile{
 	display: none;
 }
 #benefits{
-	margin-top: 50px;
+	margin-top: 30px;
 }
 #benefits>h3{
 	margin-top: 30px;

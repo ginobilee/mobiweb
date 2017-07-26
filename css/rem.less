@@ -2,7 +2,7 @@
     @{name}: @px / 75 * 1rem;
 }
 .px2px(@name, @px){
-    @{name}: round(@px / 2) * 1px;
+    @{name}: round(@px) * 1px;
     [data-dpr="2"] & {
         @{name}: @px * 1px;
     }
@@ -17,6 +17,9 @@
     [data-dpr="3"] & {
         @{name}: round(@px / 2 * 3) * 1px
     }
+    [data-dpr="3.5"] & {
+        @{name}: round(@px / 2 * 3) * 1px
+    }
     // for 三星note4
     [data-dpr="4"] & {
         @{name}: @px * 2px;
@@ -26,6 +29,9 @@
 /*media query*/
 @media only screen and (min-device-width : 1000px){
     /*for details to slide to top*/
+    nav{
+        height: 30px;
+    }
     .slideBottom{
         top: 100vh;
     }
@@ -33,20 +39,59 @@
         top: 70px;
     }
 }
-@media only screen and (min-device-width : 375px) and (max-device-width : 667px) {
-//@media only screen and (max-device-width : 1000px) {
+//@media only screen and (min-device-width : 375px) and (max-device-width : 667px) {
+@media only screen and (max-device-width : 1000px) {
+//@media only screen and (max-width : 1000px) {
+    *, *:before, *:after { max-height: 100000px }
     #docHeader{
         justify-content:center;
         .px2rem(height,88);
+        .px2rem(width,750);
         padding: 0;
         #logoDiv{
             display: inherit;
             .px2rem(height,30);
             padding: 0;
             border:none;
+            img{
+                height: 100%;
+                width: initial;
+            }
         }
         nav{
-          display:none;
+          position: absolute;
+          left: 0;
+          .px2rem(top,88);
+          margin-left: 0;
+          width: 100%;
+          opacity: 1;
+          ul{
+            display: block;
+            width: 100%;
+            overflow: hidden;
+            height: 0;
+              li{
+                display: flex;
+                justify-content:center;
+                align-items:center;
+                width: 100%;
+                .px2rem(height,80);
+                .px2px(font-size,22);
+                text-align: center;
+                background-color: rgba(3,3,3,0.03);
+                border-bottom: solid rgba(5,5,5,0.05);
+                .px2rem(border-width,1);
+                a{
+                    width:100%;
+                    padding: 0;
+                    margin: 0;
+                }
+                a:linked{
+                    background-color: rgba(1,1,1,0)
+                }
+              }            
+          }
+          z-index: 9999;
         }
         #navBtn{
           display:block;
@@ -81,9 +126,13 @@
         p{
             margin-left: auto;
             margin-right: auto;
+            width: initial;
             .px2rem(margin-bottom,60);
-            .px2rem(width,160);
+            //.px2rem(width,160);
+            .px2rem(padding-left,10);
+            .px2rem(padding-right,10);
             .px2rem(height,50);
+            .px2rem(line-height,46);
             .px2rem(border-width,2);
             .px2px(font-size,22);
         }
@@ -91,7 +140,7 @@
             display: none;
         }
         #mobiToTeam{
-            display: block;
+            display: inline-block;
         }
     }
 
@@ -179,13 +228,9 @@
                     height: 100%;
                 }
                 .slideCap{
-                    width: 100%;
-                    opacity: 0;
-                    p{
-                        display: none;
-                    }
+                    display: none;
                 }
-                .dashes{
+                #mobileDash{
                     display: flex;
                     width: 100%;
                     height: 30px;
@@ -291,10 +336,11 @@
                     }
                     .mobile{
                         display: block;
-                            .px2rem(height,24);
+                        .px2rem(height,24);
                         img{
                             height: 100%;
                             width: initial;
+                            margin-top: auto;
                             margin-bottom: auto;
                             .px2rem(padding-right,20);
                         }
@@ -328,9 +374,9 @@
                                 .px2rem(margin-bottom,20);
                             }
                             li{
-                                .px2rem(margin-bottom,20);
                                 .px2px(font-size,22);
                                 line-height: normal;
+                                .px2px(line-height,42);
                             }
                         }
                     }

@@ -9,11 +9,9 @@ function setRem(){
 	//rem = 750 * dpr / 10;
 	scale = 1 / dpr;
 
-
 	// 设置viewport，进行缩放，达到高清效果
-	metaEl.setAttribute('content', 'width=device-width,initial-scale=' + 0.5 + ',maximum-scale=' + 0.5 + ', minimum-scale=' + 0.5 + ',user-scalable=no');
+	metaEl.setAttribute('content', 'width=device-width,initial-scale=' + scale + ',maximum-scale=' + scale + ', minimum-scale=' + scale + ',user-scalable=no');
 
-	console.log(docEl.clientWidth)
 	// 设置data-dpr属性，留作的css hack之用
 	docEl.setAttribute('data-dpr', dpr);
 
@@ -33,6 +31,5 @@ function setRem(){
 
 	window.dpr = dpr;
 	window.rem = rem;
-	console.log(metaEl)
 }
 setRem()
