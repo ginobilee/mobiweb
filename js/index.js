@@ -74,15 +74,14 @@ function initPost(){
 			let postID = +this.getAttribute('id').slice(-1)
 			let post = postDtls[postID]
 			Velocity(post,'fadeIn',300)
-			details.style.overflow = 'hidden'
 		})
 	}
 	for(let i=0,n=postDtls.length;i<n;i++){
 		postDtls[i].addEventListener('click',function(e){
+			e.preventDefault()
 			e.stopPropagation()
 			if(e.target === this){
-				Velocity(this,'fadeOut',{display:'none'},300)
-				details.style.overflow = 'scroll'		
+				Velocity(this,'fadeOut',{display:'none'},300)	
 			}
 		},false)
 	}
