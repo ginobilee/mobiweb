@@ -119,6 +119,7 @@ function initNav(){
 	}else{
 		document.querySelector('#anchor1').classList.remove('active')
 		const navWrapper = document.querySelector('#navWrapper')
+		document.querySelector('introHeader').innerHTML = '&nbsp;&nbsp;科技，让校园生活更便捷！'
 		let headerWidth = parseInt(window.getComputedStyle(document.querySelector('#docHeader'),null).height)
 		let navLiHeight = parseInt(window.getComputedStyle(document.querySelector('.navLi'),null).height)
 		let navHeight = navLiHeight * 3 + 20;
